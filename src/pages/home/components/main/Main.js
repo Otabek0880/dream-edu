@@ -10,7 +10,7 @@ export function MainPage() {
   return (
     <div
       id="main"
-      className="w-full flex flex-col lg:flex-row justify-between items-center bg-purple-700 p-4 lg:p-8"
+      className="font-inter w-full flex flex-col lg:flex-row justify-between items-center bg-black p-4 lg:p-8"
     >
       <div className="w-full lg:w-[50%] p-4 lg:p-5 space-y-4 lg:space-y-8">
         <p className="text-xl lg:text-3xl text-white font-bold">

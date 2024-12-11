@@ -3,15 +3,25 @@ import { ContractIcon } from "../../../../assets/contractIcon";
 import { EmployeeIcon } from "../../../../assets/employeeIcon";
 import { GraphIcon } from "../../../../assets/graphIcon";
 import RegisterModalComponent from "../../../../components/RegisteredModal";
-
+import { Button, TextField } from "@mui/material";
+import { MuiTelInput } from "mui-tel-input";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 export function AboutUs() {
   const [open, setOpen] = useState(false);
-
+  const [value, setValue] = useState("+998");
+  const [selectedOption,setSelectedOption] = useState('option1')
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  
   return (
-    <div className="w-full pb-9 bg-purple-700" id="about-us">
+    <div className="w-full font-inter pb-9 bg-black" id="about-us">
       <p className="text-2xl md:text-4xl font-bold text-white text-center">
         Biz haqimizda
       </p>
@@ -25,9 +35,8 @@ export function AboutUs() {
               src="/images/study-center.jpg"
             />
             <p className="w-[90%] md:w-[50%] text-white font-bold text-lg md:text-2xl">
-              Markazning ta'lim jarayoni va kurslari: Ta'lim jarayoni: Talim
-              intensiv kurslar orqali olib boriladi, va o'quvchilar to'liq
-              shaxsiy yondashuvni ta'minlaydigan metodologiya asosida
+              Ta'lim intensiv kurslar orqali olib boriladi, va o'quvchilar
+              to'liq shaxsiy yondashuvni ta'minlaydigan metodologiya asosida
               o'qitiladi. • Taklif qilinayotgan kurslar: o IELTS (International
               English Language Testing System) o CEFR (Common European Framework
               of Reference for Languages) • Kurslar qanday usulda olib boriladi?
@@ -85,14 +94,14 @@ export function AboutUs() {
         </div>
 
         {/* Large Image Section */}
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-4 md:p-10">
+        <div className="rounded-lg font-inter bg-white m-10 flex flex-col md:flex-row gap-6 md:gap-10 p-4 md:p-10">
           <img
-            className="w-full md:w-[50%] h-[250px] md:h-[1150px] object-cover rounded-lg"
+            className="w-full  md:w-[40%] h-[250px] md:h-[750px] object-cover rounded-lg"
             alt=""
             src="/images/logo.png"
           />
           <div className="w-full md:w-[50%] p-6 md:p-10 space-y-6 md:space-y-10 rounded-xl bg-white">
-            <h1 className="text-2xl md:text-3xl font-bold">3 yillik tajriba</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">5 yillik tajriba</h1>
             <p className="text-base md:text-lg text-gray-500 font-normal">
               Markazning yutuqlari va muvaffaqiyatlari: • IELTS
               muvaffaqiyatlari: 500 dan ortiq talabalar IELTS imtihonini
@@ -101,39 +110,57 @@ export function AboutUs() {
               Londonning eng yaxshi universitetlariga hamda O'zbekistonning top
               universitetlariga kirishgan.
               <br />
-               
               <span>
-                
-              Boshqa markazlardan ajratib turadigan xususiyatlar:<br/>
-              o  Yuqori malakali o'qituvchilar.<br/>
-              o  Maxsus metodika.<br/>
-              o  Talabalar uchun individual yondashuv.<br/>
-               </span>
+                Boshqa markazlardan ajratib turadigan xususiyatlar:
+                <br />
+                o Yuqori malakali o'qituvchilar.
+                <br />
+                o Maxsus metodika.
+                <br />
+                o Talabalar uchun individual yondashuv.
+                <br />
+              </span>
             </p>
-            {/* <div className="space-y-6 md:space-y-12">
-              <div className="flex items-center justify-around gap-4">
-                <div className="flex flex-col items-center text-center">
-                  <p className="text-3xl md:text-4xl font-bold">25</p>
-                  <p className="text-lg md:text-2xl font-bold">Oliygohlar</p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <p className="text-3xl md:text-4xl font-bold">137</p>
-                  <p className="text-lg md:text-2xl font-bold">Talabalar</p>
-                </div>
-              </div>
-              <div className="flex items-center justify-around gap-4">
-                <div className="flex flex-col items-center text-center">
-                  <p className="text-3xl md:text-4xl font-bold">583</p>
-                  <p className="text-lg md:text-2xl font-bold">
-                    Bitiruvchilari
-                  </p>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <p className="text-3xl md:text-4xl font-bold">133</p>
-                  <p className="text-lg md:text-2xl font-bold">Talabalar</p>
-                </div>
-              </div>
-            </div> */}
+          </div>
+        </div>
+        <div className="bg-white  flex flex-col md:flex-row gap-6 md:gap-10 m-10 rounded-lg p-4 md:p-10">
+          <img
+            className="w-full md:w-[50%] h-[250px] md:h-[750px] object-cover rounded-lg"
+            alt=""
+            src="/images/mock-exams.jpg"
+          />
+          <div className="w-full md:w-[50%] p-6 md:p-10 space-y-6 md:space-y-10 rounded-xl bg-white">
+            <h1 className="text-2xl md:text-3xl font-bold">
+              Mockda ishtirok etish uchun ro'yxatdan o'ting
+            </h1>
+            <MuiTelInput fullWidth value={value} onChange={handleChange} />
+            <TextField
+              fullWidth
+              id="outlined-basic"
+              label="Ism familiya"
+              variant="outlined"
+            />
+            <FormControl style={{display:'block'}} component="fieldset">
+              <FormLabel component="legend">Qaysi payitdagi mock uchun</FormLabel>
+              <RadioGroup
+                aria-label="options"
+                name="options"
+                value={selectedOption}
+                onChange={(e) => setSelectedOption(e.target.value)}
+              >
+                <FormControlLabel
+                  value="option1"
+                  control={<Radio />}
+                  label="oyning 2-haftasiga"
+                />
+                <FormControlLabel
+                  value="option2"
+                  control={<Radio />}
+                  label="oyning 4-haftasiga"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Button variant="contained">Ro'yxatdan o'tish</Button>
           </div>
         </div>
 

@@ -8,7 +8,7 @@ export function NavbarMenu() {
   };
 
   return (
-    <div className="h-auto md:h-[100px] flex flex-col md:flex-row justify-center md:justify-between items-center w-full bg-purple-800 shadow-md px-4 md:px-10 py-4">
+    <div className="font-inter h-auto md:h-[100px] flex flex-col md:flex-row justify-center md:justify-between items-center w-full bg-purple-800 shadow-md px-4 md:px-10 py-4">
       {/* <h1 className="text-3xl md:text-5xl text-yellow-500 font-bold mb-4 md:mb-0">
         Dream Edu
       </h1> */}

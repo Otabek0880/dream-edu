@@ -6,7 +6,7 @@ import NavInfo from "./FooterInfo";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="font-inter">
       <footer
         id="contact"
         className="flex flex-col md:flex-row justify-center gap-10 w-full bg-blue-950 py-8 px-4 md:px-0"
