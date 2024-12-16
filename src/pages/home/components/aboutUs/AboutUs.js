@@ -75,6 +75,7 @@ export function AboutUs() {
         Biz haqimizda
       </p>
       <div className="space-y-8 md:space-y-10">
+      <iframe width="100%" height="1015" className="p-10" src="https://www.youtube.com/embed/M9zBAl-gi1w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div className="space-y-8 md:space-y-10 py-6 md:py-10">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
             <img

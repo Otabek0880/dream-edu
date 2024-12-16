@@ -4,9 +4,9 @@ import { PhoneIcon } from "../../assets/phoneIcon";
 
 const NavInfo = () => {
   return (
-    <div className="w-full h-auto md:h-[110px] bg-blue-950">
+    <div className="h-auto md:h-[110px] bg-blue-950">
       <div className="flex flex-col md:flex-row h-full items-center justify-around py-4 md:py-0 gap-6 md:gap-0">
-        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+        <div className="flex flex-col  items-start gap-6 md:gap-5">
           <div className="flex gap-3 items-center text-center md:text-left">
             <PhoneIcon />
             <div>

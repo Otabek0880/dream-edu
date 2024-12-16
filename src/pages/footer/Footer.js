@@ -9,7 +9,7 @@ const Footer = () => {
     <div className="font-inter">
       <footer
         id="contact"
-        className="flex flex-col md:flex-row justify-around gap-10 w-full bg-blue-950 py-8 px-4 md:px-0"
+        className="flex flex-col md:flex-row items-center justify-around gap-10 w-full bg-blue-950 py-8 px-4 md:px-0"
       >
         <div className="space-y-6 text-center md:text-left">
           {/* <h1 className="text-3xl md:text-4xl text-yellow-500 font-bold">
@@ -54,6 +54,7 @@ const Footer = () => {
             </div>
           </div>
         </div> */}
+      <NavInfo />
 
         <div className="text-center md:text-left">
           <p className="text-2xl md:text-3xl text-white font-bold">
@@ -61,17 +62,17 @@ const Footer = () => {
           </p>
           <div className="mt-4 md:mt-8 flex justify-center md:justify-start items-center gap-5">
             <div className="cursor-pointer hover:bg-blue-700 p-3 bg-purple-800 rounded-full">
-              <a href="#">
+              <a href="https://t.me/AkmalAkhmedjanov">
               <FacebookIcon />
               </a>
             </div>
             <div className="cursor-pointer hover:bg-blue-700 p-3 bg-purple-800 rounded-full">
-              <a href="#">
+              <a href="https://t.me/AkmalAkhmedjanov">
               <TwitterIcon />
                  </a>
             </div>
             <div className="cursor-pointer hover:bg-blue-700 p-3 bg-purple-800 rounded-full">
-              <a href="#">
+              <a href="https://t.me/AkmalAkhmedjanov">
               <GoogleIcon />
                </a>
             </div>
@@ -83,7 +84,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <NavInfo />
     </div>
   );
 };
