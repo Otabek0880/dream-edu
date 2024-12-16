@@ -10,23 +10,71 @@ import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import api from "../../../../api"; // Assuming you have an API utility for handling requests
+
 export function AboutUs() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("+998");
-  const [selectedOption,setSelectedOption] = useState('option1')
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("option1");
+
+  const validationSchema = Yup.object({
+    first_name: Yup.string().required("Ism familiya talab qilinadi"),
+    phone: Yup.string().required("Telefon raqam talab qilinadi"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      first_name: "",
+      phone: "",
+      application_answer: "",
+    },
+    validationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      setIsLoading(true);
+      try {
+        const response = await api.post(
+          selectedOption == "option1"
+            ? "/leads/forms/answer/663f3ac7-15d9-407c-8cbf-9142b988cfa0/"
+            : "/leads/forms/answer/878e24e3-0375-4d56-b453-4bc3d5c6cdb9/",
+          {
+            ...values,
+            phone:values.phone.replace(/\s+/g, ""),
+            application_answer: "",
+          }
+        );
+
+        if (response.status === 201) {
+          toast.success("Muvaffaqiyatli yuborildi!", {
+            position: "top-center",
+          });
+          resetForm();
+          handleClose();
+        }
+      } catch (error) {
+        if (error.response) {
+          formik.setErrors(error.response.data);
+          toast.error("Xatolik yuz berdi: " + error.response.data.message);
+        } else {
+          toast.error("Tarmoq xatoligi: " + error.message);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+  });
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
+
   return (
     <div className="w-full font-inter pb-9 bg-black" id="about-us">
       <p className="text-2xl md:text-4xl font-bold text-white text-center">
         Biz haqimizda
       </p>
       <div className="space-y-8 md:space-y-10">
-        {/* Section with images and text */}
         <div className="space-y-8 md:space-y-10 py-6 md:py-10">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
             <img
@@ -56,8 +104,8 @@ export function AboutUs() {
             </p>
             <img
               alt=""
-              className="w-[90%] md:w-[500px] bg-cover rounded-xl h-[250px] md:h-[500px]"
-              src="/images/study-center.jpg"
+              className="w-[90%] md:w-[560px] bg-cover rounded-xl h-[250px] md:h-[500px]"
+              src="/images/v1.jpg"
             />
           </div>
         </div>
@@ -123,7 +171,9 @@ export function AboutUs() {
             </p>
           </div>
         </div>
-        <div className="bg-white  flex flex-col md:flex-row gap-6 md:gap-10 m-10 rounded-lg p-4 md:p-10">
+
+        {/* Mock Exams Registration Section */}
+        <div className="bg-white flex flex-col md:flex-row gap-6 md:gap-10 m-10 rounded-lg p-4 md:p-10">
           <img
             className="w-full md:w-[50%] h-[250px] md:h-[750px] object-cover rounded-lg"
             alt=""
@@ -133,34 +183,58 @@ export function AboutUs() {
             <h1 className="text-2xl md:text-3xl font-bold">
               Mockda ishtirok etish uchun ro'yxatdan o'ting
             </h1>
-            <MuiTelInput fullWidth value={value} onChange={handleChange} />
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="Ism familiya"
-              variant="outlined"
-            />
-            <FormControl style={{display:'block'}} component="fieldset">
-              <FormLabel component="legend">Qaysi payitdagi mock uchun</FormLabel>
-              <RadioGroup
-                aria-label="options"
-                name="options"
-                value={selectedOption}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              >
-                <FormControlLabel
-                  value="option1"
-                  control={<Radio />}
-                  label="oyning 2-haftasiga"
-                />
-                <FormControlLabel
-                  value="option2"
-                  control={<Radio />}
-                  label="oyning 4-haftasiga"
-                />
-              </RadioGroup>
-            </FormControl>
-            <Button variant="contained">Ro'yxatdan o'tish</Button>
+
+            <form className="space-y-5" onSubmit={formik.handleSubmit}>
+              <MuiTelInput
+                fullWidth
+                value={formik.values.phone}
+                onChange={(newValue) => formik.setFieldValue("phone", newValue)}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                helperText={formik.touched.phone && formik.errors.phone}
+              />
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Ism familiya"
+                variant="outlined"
+                name="first_name"
+                value={formik.values.first_name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.first_name && Boolean(formik.errors.first_name)
+                }
+                helperText={
+                  formik.touched.first_name && formik.errors.first_name
+                }
+              />
+
+              <FormControl style={{ display: "block" }} component="fieldset">
+                <FormLabel component="legend">
+                  Qaysi payitdagi mock uchun
+                </FormLabel>
+                <RadioGroup
+                  aria-label="options"
+                  name="options"
+                  value={selectedOption}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                >
+                  <FormControlLabel
+                    value="option1"
+                    control={<Radio />}
+                    label="oyning 2-haftasiga"
+                  />
+                  <FormControlLabel
+                    value="option2"
+                    control={<Radio />}
+                    label="oyning 4-haftasiga"
+                  />
+                </RadioGroup>
+              </FormControl>
+              <Button variant="contained" type="submit" disabled={isLoading}>
+                {isLoading ? "Yuborilmoqda..." : "Ro'yxatdan o'tish"}
+              </Button>
+            </form>
           </div>
         </div>
 

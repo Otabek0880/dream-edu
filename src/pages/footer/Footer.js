@@ -9,7 +9,7 @@ const Footer = () => {
     <div className="font-inter">
       <footer
         id="contact"
-        className="flex flex-col md:flex-row justify-center gap-10 w-full bg-blue-950 py-8 px-4 md:px-0"
+        className="flex flex-col md:flex-row justify-around gap-10 w-full bg-blue-950 py-8 px-4 md:px-0"
       >
         <div className="space-y-6 text-center md:text-left">
           {/* <h1 className="text-3xl md:text-4xl text-yellow-500 font-bold">
@@ -22,7 +22,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="text-center md:text-left">
+        {/* <div className="text-center md:text-left">
           <p className="text-2xl md:text-3xl text-white font-bold">
             Foydali Havolalar
           </p>
@@ -53,7 +53,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="text-center md:text-left">
           <p className="text-2xl md:text-3xl text-white font-bold">
