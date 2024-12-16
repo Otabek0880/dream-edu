@@ -17,7 +17,7 @@ const Footer = () => {
           </h1> */}
           <img style={{borderRadius:'50%'}} width={100} height={100} src="/images/logo-black.png" alt=""/>
           <p className="text-white font-normal text-lg md:text-xl">
-            Chet elda tahsil olishni orzu qilganlar uchun. <br /> DreamEdu! Biz
+            Chet elda tahsil olishni orzu qilganlar uchun. <br /> Ielts School! Biz
             Bilan Chet Elda O'qing
           </p>
         </div>
